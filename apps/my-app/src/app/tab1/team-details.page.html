@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Team Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content [fullscreen]="true">
+    <ng-container *ngIf="(teamDetails$ | async) as teamDetails">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Name: {{teamDetails?.name}}</ion-card-title>
+          <ion-card-subtitle>Email : {{teamDetails?.email}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Address: {{teamDetails?.address}}
+          
+        </ion-card-content>
+        <ng-container *ngIf="teamDetails.squad.length >0">
+          <ion-list>
+            <ion-list-header  class="ion-margin-start"> Squad
+
+            </ion-list-header>
+            <ion-item  *ngFor="let item of teamDetails.squad" >
+                <ion-label>{{item.name}}</ion-label>
+            </ion-item>
+          </ion-list>
+      </ng-container>
+      <ng-container *ngIf="teamDetails.squad.length === 0">
+        <ion-label class="ion-margin-start"> No Players Exists</ion-label>
+      </ng-container>
+      </ion-card>  
+    </ng-container>
+</ion-content>

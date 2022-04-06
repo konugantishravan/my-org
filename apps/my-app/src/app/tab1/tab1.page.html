@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Choose Start date & End Date  </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+    <ion-label>Pick Start date</ion-label>
+    <ion-datetime
+      displayFormat="DD.MM.YYYY"
+      (ionChange)="dateChanged('startDate', $event)"
+    ></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Pick End date</ion-label>
+    <ion-datetime
+      displayFormat="DD.MM.YYYY"
+      (ionChange)="dateChanged('endDate', $event)"
+    ></ion-datetime>
+  </ion-item>
+
+<ng-container *ngIf="(competitionsBySeason$ | async) as comp">
+  <h2> Competitions</h2>
+  <ion-list>
+    <ion-card (click)="competitionClick(item.id)"  *ngFor="let item of comp">
+      <ion-card-header>
+        <ion-card-subtitle></ion-card-subtitle>
+        <ion-card-title>Name: {{item?.name}}</ion-card-title>
+        <ion-label>seasons: {{item?.numberOfAvailableSeasons}}</ion-label>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+</ng-container>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title size="large">Teams</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content [fullscreen]="true">
+    <ng-container *ngIf="(teams$ | async) as teams">
+        <ion-list>
+        <ion-item  *ngFor="let item of teams" (click)="teamClick(item.id)" >
+            <ion-label>{{item.name}}</ion-label>
+        </ion-item>
+        </ion-list>
+   
+  </ng-container>
+
+</ion-content>
